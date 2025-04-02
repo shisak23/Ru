@@ -2,7 +2,7 @@ import telebot
 import random
 
 TOKEN = "7725707594:AAEU7qoiUsMnARZHtEU0hcr_2zbOjgEWDeI"  # Apne bot ka token yahan dalein
-OWNER_ID = 7814078698  # Yahan Owner ka Telegram ID dalein (Find it using @userinfobot)
+OWNER_ID = 7814078698  # Owner ka Telegram ID (Find it using @userinfobot)
 bot = telebot.TeleBot(TOKEN)
 
 approved_users = ["user1", "user2"]  # Pehle se approved users
@@ -10,7 +10,7 @@ approved_users = ["user1", "user2"]  # Pehle se approved users
 def process_command(message, command_name):
     user = message.from_user.username
     if user not in approved_users:
-        bot.reply_to(message, f"❌ Access Denied! Buy access: @YourUsername")
+        bot.reply_to(message, f"❌ Access Denied! Buy access: @MRSKYX0)
         return
     
     bot.reply_to(message, f"Send details in format:\n\n`1234567812345678|MM/YY|CVV`", parse_mode="Markdown")
@@ -28,6 +28,29 @@ def process_command(message, command_name):
         bot.clear_step_handler_by_chat_id(msg.chat.id)
 
     bot.register_next_step_handler(message, process_details)
+
+# /start command
+@bot.message_handler(commands=['start'])
+def start_command(message):
+    user = message.from_user.username
+    if user in approved_users:
+        welcome_messages = [
+            "👋 Welcome to the bot!",
+            "🚀 Get ready for action!",
+            "🔥 Let's get started!",
+            "⚡ Use the commands below:"
+        ]
+        
+        for msg in welcome_messages:
+            bot.send_message(message.chat.id, msg)
+
+        bot.send_message(message.chat.id, "✅ Available Commands:\n"
+                                          "/kill - Process data\n"
+                                          "/chk - Check details\n"
+                                          "/help - Get more info")
+
+    else:
+        bot.reply_to(message, f"❌ Access Denied! Buy access: @MRSKYX0)
 
 # /kill command
 @bot.message_handler(commands=['kill'])
