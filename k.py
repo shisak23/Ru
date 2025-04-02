@@ -10,7 +10,7 @@ approved_users = ["user1", "user2"]  # Pehle se approved users
 def process_command(message, command_name):
     user = message.from_user.username
     if user not in approved_users:
-        bot.reply_to(message, f"❌ Access Denied! Buy access: @MRSKYX0)
+        bot.reply_to(message, f"❌ Access Denied! Buy access: @MRSKYX0
         return
     
     bot.reply_to(message, f"Send details in format:\n\n`1234567812345678|MM/YY|CVV`", parse_mode="Markdown")
@@ -50,7 +50,7 @@ def start_command(message):
                                           "/help - Get more info")
 
     else:
-        bot.reply_to(message, f"❌ Access Denied! Buy access: @MRSKYX0)
+        bot.reply_to(message, f"❌ Access Denied! Buy access: @MRSKYX0
 
 # /kill command
 @bot.message_handler(commands=['kill'])
